@@ -39,6 +39,7 @@ public class TimeEntryControllerTest {
             .when(timeEntryRepository)
             .create(any(TimeEntry.class));
 
+
         ResponseEntity<TimeEntry> response = controller.create(timeEntryToCreate);
 
         verify(timeEntryRepository).create(timeEntryToCreate);
@@ -69,7 +70,6 @@ public class TimeEntryControllerTest {
         doReturn(null)
             .when(timeEntryRepository)
             .find(nonExistentTimeEntryId);
-
         ResponseEntity<TimeEntry> response = controller.read(nonExistentTimeEntryId);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
